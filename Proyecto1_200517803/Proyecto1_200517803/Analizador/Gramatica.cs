@@ -42,6 +42,7 @@ namespace Proyecto1_200517803.Analizador
             MarkReservedWords("switch");
             MarkReservedWords("default");
             MarkReservedWords("null");
+            MarkReservedWords("new");
             #endregion
 
             #region Terminales
@@ -53,7 +54,7 @@ namespace Proyecto1_200517803.Analizador
             var extendida = ToTerm("extends");
             var entero = ToTerm("int");
             var cadena = ToTerm("String");
-            var boleano = ToTerm("bool");
+            var boleano = ToTerm("boolean");
             var doble = ToTerm("double");
             var caracter = ToTerm("char");
             var este = ToTerm("this");
@@ -73,6 +74,7 @@ namespace Proyecto1_200517803.Analizador
             var nulo = ToTerm("null");
             var verdadero = ToTerm("true");
             var falso = ToTerm("false");
+            var nuevo = ToTerm("new");
 
             //resto del alfabeto
             var principal = ToTerm("main");
@@ -118,61 +120,100 @@ namespace Proyecto1_200517803.Analizador
             //se declaran todas las variables no terminales
             var INICIO = new NonTerminal("INICIO");
             var CUERPO= new NonTerminal("CUERPO");
-            var TIPO_CLASE = new NonTerminal("TIPO_CLASE");
+            var ACCESO = new NonTerminal("ACCESO");
             var FIN_CLASE = new NonTerminal("FIN_CLASE");
             var SENTENCIAS = new NonTerminal("SENTENCIAS");
             var SENTENCIA = new NonTerminal("SENTENCIA");
             var EXP = new NonTerminal("EXP");
-            var EXP2 = new NonTerminal("EXP2");
             var DECLARACION = new NonTerminal("DECLARACION");
-            //var ASIGNACION = new NonTerminal("ASIGNACION");
-            var ASIGNA_DECLARA = new NonTerminal("ASIGNA_DECLARA");
+            var ASIGNACION = new NonTerminal("ASIGNACION");
+            var DECLARA_ASIGNA = new NonTerminal("DECLARA_ASIGNA");
             var TIPO = new NonTerminal("TIPO");
             var LISTA = new NonTerminal("LISTA");
+            var PARAMETROS = new NonTerminal("PARAMETROS");
             var PARAMETROS2 = new NonTerminal("PARAMETROS2");
-            var TIPOS = new NonTerminal("TIPOS");
+            var TIPOS =new NonTerminal("TIPOS");
+            var TIPOS2 = new NonTerminal("TIPOS2");
+            var CONSTRUCTORES = new NonTerminal("CONSTRUCTORES");
+            var CONSTRUCTOR = new NonTerminal("CONSTRUCTOR");
+            
+
+           
 
             #endregion
 
             #region Gramatica
             INICIO.Rule = CUERPO;
-            CUERPO.Rule = TIPO_CLASE + clase + id + FIN_CLASE
+            CUERPO.Rule = ACCESO + clase + id + FIN_CLASE
                         | clase + id + FIN_CLASE;
 
-            TIPO_CLASE.Rule = publica
+            ACCESO.Rule = publica
                             |privada
                             |protegida;
 
             FIN_CLASE.Rule = extendida + id + allave + SENTENCIAS + cllave
                             | allave + SENTENCIAS + cllave;
 
+         
+
             SENTENCIAS.Rule = MakeStarRule(SENTENCIAS , SENTENCIA);
 
-            SENTENCIA.Rule = DECLARACION
-                            | ASIGNA_DECLARA;
-            DECLARACION.Rule = TIPO + LISTA + pcoma;
 
-            ASIGNA_DECLARA.Rule = TIPO + id + igual + EXP + pcoma;
+            SENTENCIA.Rule = DECLARACION
+                            | DECLARA_ASIGNA
+                            | ASIGNACION
+                            | CONSTRUCTORES;
+
+
+            DECLARACION.Rule = TIPO + LISTA + pcoma
+                            | ACCESO + TIPO + LISTA + pcoma;
+
+
+            DECLARA_ASIGNA.Rule = TIPO + LISTA + igual + EXP + pcoma
+                                | ACCESO + TIPO + LISTA + igual + EXP + pcoma
+                                | ACCESO + id + id + igual + nuevo + EXP + pcoma
+                                | id + id + igual + nuevo + EXP + pcoma
+                                | ACCESO + id + id + igual + nulo + pcoma
+                                | id + id + igual + nulo + pcoma
+                                | id + id + igual + EXP + pcoma;
+
+            ASIGNACION.Rule = id + igual + EXP + pcoma;
 
             LISTA.Rule=LISTA+coma+id
                        |id;
 
-
-            PARAMETROS2.Rule = PARAMETROS2 + coma + TIPOS
+            PARAMETROS.Rule = PARAMETROS + coma + TIPOS
                             | TIPOS;
 
-            TIPOS.Rule = id
+            PARAMETROS2.Rule = PARAMETROS2 + coma + TIPOS2
+                            | TIPOS2;
+
+            TIPOS.Rule = TIPO + id
+                       | TIPO + numero
+                       | TIPO + tstring;
+
+            TIPOS2.Rule = id
                         | numero
                         | tstring;
-                            
 
-            
 
             TIPO.Rule = entero
                     | boleano
                     | caracter
                     | cadena
                     | doble;
+
+            CONSTRUCTORES.Rule = MakeStarRule(CONSTRUCTORES, CONSTRUCTOR);
+
+            CONSTRUCTOR.Rule = ACCESO + id + apar + cpar + allave + cllave
+                             | ACCESO + id + apar + cpar + allave + SENTENCIAS + cllave
+                             | id + apar + cpar + allave + cllave
+                             | id + apar + cpar + allave + SENTENCIAS + cllave
+                             | ACCESO + id + apar + PARAMETROS + cpar + allave + cllave
+                             | ACCESO + id + apar + PARAMETROS + cpar + allave + SENTENCIAS + cllave
+                             | id + apar + PARAMETROS + cpar + allave + cllave
+                             | id + apar + PARAMETROS + cpar + allave + SENTENCIAS + cllave;
+                             
 
 
             EXP.Rule = EXP + ToTerm("||") + EXP
@@ -187,6 +228,7 @@ namespace Proyecto1_200517803.Analizador
                 | EXP + ToTerm("-") + EXP
                 | EXP + ToTerm("*") + EXP
                 | EXP + ToTerm("/") + EXP
+                | EXP + ToTerm(".") + EXP
                 | apar + EXP + cpar
                 | ToTerm("!") + EXP
                 | id
@@ -197,8 +239,7 @@ namespace Proyecto1_200517803.Analizador
                 | verdadero
                 | id + apar + PARAMETROS2 + cpar
                 | id + apar + cpar;
-
-            EXP2.Rule=
+               
             #endregion
 
             #region Preferencias

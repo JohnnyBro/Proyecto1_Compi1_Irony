@@ -40,10 +40,10 @@
             this.sALIRToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pROYECTOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sALIRToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.arbolito = new System.Windows.Forms.TreeView();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.eJECUTARToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eJECUTARToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.arbolito = new System.Windows.Forms.TreeView();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtEntrada)).BeginInit();
@@ -95,6 +95,7 @@
             this.txtEntrada.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtEntrada.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.txtEntrada.Dock = System.Windows.Forms.DockStyle.Top;
+            this.txtEntrada.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.txtEntrada.IsReplaceMode = false;
             this.txtEntrada.Location = new System.Drawing.Point(3, 3);
             this.txtEntrada.Name = "txtEntrada";
@@ -139,7 +140,7 @@
             // aBRIRToolStripMenuItem
             // 
             this.aBRIRToolStripMenuItem.Name = "aBRIRToolStripMenuItem";
-            this.aBRIRToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aBRIRToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
             this.aBRIRToolStripMenuItem.Text = "ABRIR";
             // 
             // sALIRToolStripMenuItem
@@ -147,7 +148,7 @@
             this.sALIRToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.pROYECTOToolStripMenuItem});
             this.sALIRToolStripMenuItem.Name = "sALIRToolStripMenuItem";
-            this.sALIRToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.sALIRToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
             this.sALIRToolStripMenuItem.Text = "NUEVO";
             // 
             // pROYECTOToolStripMenuItem
@@ -160,24 +161,9 @@
             // sALIRToolStripMenuItem1
             // 
             this.sALIRToolStripMenuItem1.Name = "sALIRToolStripMenuItem1";
-            this.sALIRToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.sALIRToolStripMenuItem1.Size = new System.Drawing.Size(113, 22);
             this.sALIRToolStripMenuItem1.Text = "SALIR";
             this.sALIRToolStripMenuItem1.Click += new System.EventHandler(this.sALIRToolStripMenuItem1_Click);
-            // 
-            // arbolito
-            // 
-            this.arbolito.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.arbolito.LabelEdit = true;
-            this.arbolito.Location = new System.Drawing.Point(12, 27);
-            this.arbolito.Name = "arbolito";
-            this.arbolito.Size = new System.Drawing.Size(157, 352);
-            this.arbolito.TabIndex = 2;
-            // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // eJECUTARToolStripMenuItem
             // 
@@ -190,9 +176,23 @@
             // eJECUTARToolStripMenuItem1
             // 
             this.eJECUTARToolStripMenuItem1.Name = "eJECUTARToolStripMenuItem1";
-            this.eJECUTARToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.eJECUTARToolStripMenuItem1.Size = new System.Drawing.Size(127, 22);
             this.eJECUTARToolStripMenuItem1.Text = "EJECUTAR";
             this.eJECUTARToolStripMenuItem1.Click += new System.EventHandler(this.eJECUTARToolStripMenuItem1_Click);
+            // 
+            // arbolito
+            // 
+            this.arbolito.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.arbolito.LabelEdit = true;
+            this.arbolito.Location = new System.Drawing.Point(12, 27);
+            this.arbolito.Name = "arbolito";
+            this.arbolito.Size = new System.Drawing.Size(157, 352);
+            this.arbolito.TabIndex = 2;
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // Form1
             // 
