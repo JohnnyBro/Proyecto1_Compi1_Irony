@@ -123,7 +123,9 @@ namespace Proyecto1_200517803.Analizador
             var ACCESO = new NonTerminal("ACCESO");
             var FIN_CLASE = new NonTerminal("FIN_CLASE");
             var SENTENCIAS = new NonTerminal("SENTENCIAS");
+            var SENTENCIAS2 = new NonTerminal("SENTENCIAS2");
             var SENTENCIA = new NonTerminal("SENTENCIA");
+            var SENTENCIA2 = new NonTerminal("SENTENCIA2");
             var EXP = new NonTerminal("EXP");
             var DECLARACION = new NonTerminal("DECLARACION");
             var ASIGNACION = new NonTerminal("ASIGNACION");
@@ -136,6 +138,20 @@ namespace Proyecto1_200517803.Analizador
             var TIPOS2 = new NonTerminal("TIPOS2");
             var CONSTRUCTORES = new NonTerminal("CONSTRUCTORES");
             var CONSTRUCTOR = new NonTerminal("CONSTRUCTOR");
+            var CONTROL = new NonTerminal("CONTROL");
+            var IF = new NonTerminal("IF");
+            var SWITCH = new NonTerminal("SWITCH");
+            var CASOS = new NonTerminal("CASOS");
+            var CASO = new NonTerminal("CASO");
+            var DEFECTO = new NonTerminal("DEFECTO");
+            var WHILE = new NonTerminal("WHILE");
+            var DO_WHILE = new NonTerminal("DO_WHILE");
+            var FOR = new NonTerminal("FOR");
+            var METODOS = new NonTerminal("METODOS");
+
+          
+           
+           
             
 
            
@@ -162,7 +178,19 @@ namespace Proyecto1_200517803.Analizador
             SENTENCIA.Rule = DECLARACION
                             | DECLARA_ASIGNA
                             | ASIGNACION
-                            | CONSTRUCTORES;
+                            | CONSTRUCTORES
+                            | IF
+                            | SWITCH;
+
+            SENTENCIAS2.Rule = MakeStarRule(SENTENCIAS2, SENTENCIA2);
+
+
+            SENTENCIA2.Rule = DECLARACION
+                            | DECLARA_ASIGNA
+                            | ASIGNACION
+                            | IF
+                            | SWITCH;
+
 
 
             DECLARACION.Rule = TIPO + LISTA + pcoma
@@ -206,13 +234,38 @@ namespace Proyecto1_200517803.Analizador
             CONSTRUCTORES.Rule = MakeStarRule(CONSTRUCTORES, CONSTRUCTOR);
 
             CONSTRUCTOR.Rule = ACCESO + id + apar + cpar + allave + cllave
-                             | ACCESO + id + apar + cpar + allave + SENTENCIAS + cllave
+                             | ACCESO + id + apar + cpar + allave + SENTENCIAS2 + cllave
                              | id + apar + cpar + allave + cllave
-                             | id + apar + cpar + allave + SENTENCIAS + cllave
+                             | id + apar + cpar + allave + SENTENCIAS2 + cllave 
                              | ACCESO + id + apar + PARAMETROS + cpar + allave + cllave
-                             | ACCESO + id + apar + PARAMETROS + cpar + allave + SENTENCIAS + cllave
+                             | ACCESO + id + apar + PARAMETROS + cpar + allave + SENTENCIAS2 + cllave
                              | id + apar + PARAMETROS + cpar + allave + cllave
-                             | id + apar + PARAMETROS + cpar + allave + SENTENCIAS + cllave;
+                             | id + apar + PARAMETROS + cpar + allave + SENTENCIAS2 + cllave;
+
+
+            IF.Rule = si + apar + EXP + cpar + allave + SENTENCIAS + cllave
+                    | si + apar + EXP + cpar + allave + SENTENCIAS + cllave + sino + allave + SENTENCIAS + cllave
+                    | si + apar + EXP + cpar + allave + SENTENCIAS + cllave + sino + IF;
+
+            SWITCH.Rule = interruptor + apar + EXP + cpar + allave + CASOS + DEFECTO + cllave;
+
+            CASOS.Rule = MakeStarRule(CASOS, CASO);
+
+            CASO.Rule = caso + EXP + dosp + SENTENCIAS + romper + pcoma;
+
+            DEFECTO.Rule = porDefecto + dosp + SENTENCIAS + romper + pcoma;
+
+            WHILE.Rule = mientras + apar + EXP + cpar + allave+ SENTENCIAS + cllave;
+            DO_WHILE.Rule = hacer + allave + SENTENCIAS + cllave + mientras + apar + EXP + cpar + pcoma;
+
+            
+
+
+
+
+
+            
+
                              
 
 
