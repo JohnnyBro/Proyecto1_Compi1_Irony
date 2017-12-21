@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Analizador\Graficador.cs" />
     <Compile Include="Analizador\Gramatica.cs" />
     <Compile Include="Analizador\Sintactico.cs" />
     <Compile Include="Form1.cs">

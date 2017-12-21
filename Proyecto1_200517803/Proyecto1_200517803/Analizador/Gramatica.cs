@@ -146,8 +146,11 @@ namespace Proyecto1_200517803.Analizador
             var DEFECTO = new NonTerminal("DEFECTO");
             var WHILE = new NonTerminal("WHILE");
             var DO_WHILE = new NonTerminal("DO_WHILE");
+            var LISTA_FOR=new NonTerminal("LISTA_FOR");
             var FOR = new NonTerminal("FOR");
             var METODOS = new NonTerminal("METODOS");
+            
+
 
           
            
@@ -180,7 +183,9 @@ namespace Proyecto1_200517803.Analizador
                             | ASIGNACION
                             | CONSTRUCTORES
                             | IF
-                            | SWITCH;
+                            | SWITCH
+                            | WHILE
+                            | DO_WHILE;
 
             SENTENCIAS2.Rule = MakeStarRule(SENTENCIAS2, SENTENCIA2);
 
@@ -189,7 +194,9 @@ namespace Proyecto1_200517803.Analizador
                             | DECLARA_ASIGNA
                             | ASIGNACION
                             | IF
-                            | SWITCH;
+                            | SWITCH
+                            | WHILE
+                            | DO_WHILE;
 
 
 
@@ -243,20 +250,32 @@ namespace Proyecto1_200517803.Analizador
                              | id + apar + PARAMETROS + cpar + allave + SENTENCIAS2 + cllave;
 
 
-            IF.Rule = si + apar + EXP + cpar + allave + SENTENCIAS + cllave
-                    | si + apar + EXP + cpar + allave + SENTENCIAS + cllave + sino + allave + SENTENCIAS + cllave
-                    | si + apar + EXP + cpar + allave + SENTENCIAS + cllave + sino + IF;
+            IF.Rule = si + apar + EXP + cpar + allave + SENTENCIAS2 + cllave
+                    | si + apar + EXP + cpar + allave + cllave
+                    | si + apar + EXP + cpar + allave + SENTENCIAS2 + cllave + sino + allave + SENTENCIAS2 + cllave
+                    | si + apar + EXP + cpar + allave + cllave + sino + allave + cllave
+                    | si + apar + EXP + cpar + allave + SENTENCIAS2 + cllave + sino + IF
+                    | si + apar + EXP + cpar + allave + cllave + sino + IF;
 
             SWITCH.Rule = interruptor + apar + EXP + cpar + allave + CASOS + DEFECTO + cllave;
 
             CASOS.Rule = MakeStarRule(CASOS, CASO);
 
-            CASO.Rule = caso + EXP + dosp + SENTENCIAS + romper + pcoma;
+            CASO.Rule = caso + EXP + dosp + SENTENCIAS2 + romper + pcoma
+                       | caso + EXP + dosp + romper + pcoma;
 
-            DEFECTO.Rule = porDefecto + dosp + SENTENCIAS + romper + pcoma;
+            DEFECTO.Rule = porDefecto + dosp + SENTENCIAS2 + romper + pcoma
+                          | porDefecto + dosp + romper + pcoma;
 
-            WHILE.Rule = mientras + apar + EXP + cpar + allave+ SENTENCIAS + cllave;
-            DO_WHILE.Rule = hacer + allave + SENTENCIAS + cllave + mientras + apar + EXP + cpar + pcoma;
+            WHILE.Rule = mientras + apar + EXP + cpar + allave + SENTENCIAS2 + cllave
+                        | mientras + apar + EXP + cpar + allave + cllave;
+
+            DO_WHILE.Rule = hacer + allave + SENTENCIAS2 + cllave + mientras + apar + EXP + cpar + pcoma;
+
+            LISTA_FOR.Rule = MakeStarRule(LISTA_FOR, FOR);
+
+            FOR.Rule=
+
 
             
 

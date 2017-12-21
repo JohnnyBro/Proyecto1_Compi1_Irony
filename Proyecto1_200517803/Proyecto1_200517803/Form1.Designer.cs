@@ -20,7 +20,7 @@
             base.Dispose(disposing);
         }
 
-        #region Código generado por el Diseñador de Windows Forms
+ #region Código generado por el Diseñador de Windows Forms
 
         /// <summary>
         /// Método necesario para admitir el Diseñador. No se puede modificar
@@ -44,6 +44,7 @@
             this.eJECUTARToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.arbolito = new System.Windows.Forms.TreeView();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.aRBOLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtEntrada)).BeginInit();
@@ -142,6 +143,7 @@
             this.aBRIRToolStripMenuItem.Name = "aBRIRToolStripMenuItem";
             this.aBRIRToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
             this.aBRIRToolStripMenuItem.Text = "ABRIR";
+            this.aBRIRToolStripMenuItem.Click += new System.EventHandler(this.aBRIRToolStripMenuItem_Click);
             // 
             // sALIRToolStripMenuItem
             // 
@@ -168,7 +170,8 @@
             // eJECUTARToolStripMenuItem
             // 
             this.eJECUTARToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.eJECUTARToolStripMenuItem1});
+            this.eJECUTARToolStripMenuItem1,
+            this.aRBOLToolStripMenuItem});
             this.eJECUTARToolStripMenuItem.Name = "eJECUTARToolStripMenuItem";
             this.eJECUTARToolStripMenuItem.Size = new System.Drawing.Size(62, 20);
             this.eJECUTARToolStripMenuItem.Text = "PRUEBA";
@@ -176,7 +179,7 @@
             // eJECUTARToolStripMenuItem1
             // 
             this.eJECUTARToolStripMenuItem1.Name = "eJECUTARToolStripMenuItem1";
-            this.eJECUTARToolStripMenuItem1.Size = new System.Drawing.Size(127, 22);
+            this.eJECUTARToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.eJECUTARToolStripMenuItem1.Text = "EJECUTAR";
             this.eJECUTARToolStripMenuItem1.Click += new System.EventHandler(this.eJECUTARToolStripMenuItem1_Click);
             // 
@@ -193,6 +196,13 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // aRBOLToolStripMenuItem
+            // 
+            this.aRBOLToolStripMenuItem.Name = "aRBOLToolStripMenuItem";
+            this.aRBOLToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aRBOLToolStripMenuItem.Text = "ARBOL";
+            this.aRBOLToolStripMenuItem.Click += new System.EventHandler(this.aRBOLToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -232,6 +242,7 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.ToolStripMenuItem eJECUTARToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem eJECUTARToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem aRBOLToolStripMenuItem;
     }
 }
 
